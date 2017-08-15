@@ -11,7 +11,7 @@ import java.util.Date;
 public class Car {
 
     @Id
-    @Column(length = 20)
+    @Column(length =  20)
     private String vin;
 
     @Column(length = 20, nullable = false)
