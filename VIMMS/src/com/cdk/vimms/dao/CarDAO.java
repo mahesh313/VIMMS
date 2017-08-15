@@ -14,13 +14,17 @@ public class CarDAO {
     EntityManager entityManager;
 
     public Collection<Car> getAllCars() {
-        return (entityManager.createQuery(" from Car")).getResultList();
+        return (entityManager.createQuery("from Car")).getResultList();
     }
 
 
-    public String save(Car car) {
+    public int save(Car car) {
         entityManager.persist(car);
         return car.getVin();
 
+    }
+
+    public Collection<Car> getCars(String field, String fieldValue) {
+        return (entityManager.createQuery("from Car where "+field+"='"+fieldValue+"'")).getResultList();
     }
 }

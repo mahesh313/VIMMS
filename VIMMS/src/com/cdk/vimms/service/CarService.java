@@ -20,9 +20,11 @@ public class CarService {
     }
 
     @Transactional
-    public String save(Car car){
-        //20 loc
+    public int save(Car car){
         return carDAO.save(car);
     }
 
+    public Collection<Car> readCars(String field, String fieldValue) {
+        return carDAO.getCars(field,fieldValue);
+    }
 }

@@ -1,18 +1,16 @@
 package com.cdk.vimms.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
-@javax.persistence.Table(name = "car_detail")
+@Table(name = "car_detail")
 public class Car {
 
     @Id
-    @Column(length =  20)
-    private String vin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int vin;
 
     @Column(length = 20, nullable = false)
     private String make;
@@ -21,7 +19,7 @@ public class Car {
     private String model;
 
     @Column(nullable = false)
-    private Date year;
+    private int year;
 
     @Column(length = 20, nullable = true)
     private String trim;
@@ -29,11 +27,12 @@ public class Car {
     @Column(length = 30, nullable = true)
     private String logo;
 
-    public Car() {
 
+    public Car() {
     }
 
-    public Car(String make, String model, Date year, String trim, String logo) {
+
+    public Car(String make, String model, int year, String trim, String logo) {
         this.make = make;
         this.model = model;
         this.year = year;
@@ -41,7 +40,7 @@ public class Car {
         this.logo = logo;
     }
 
-    public Car(String vin, String make, String model, Date year, String trim, String logo) {
+    public Car(int vin,String make, String model, int year, String trim, String logo) {
         this.vin = vin;
         this.make = make;
         this.model = model;
@@ -50,11 +49,14 @@ public class Car {
         this.logo = logo;
     }
 
-    public String getVin() {
+
+
+
+    public int getVin() {
         return vin;
     }
 
-    public void setVin(String vin) {
+    public void setVin(int vin) {
         this.vin = vin;
     }
 
@@ -74,11 +76,11 @@ public class Car {
         this.model = model;
     }
 
-    public Date getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
@@ -99,35 +101,9 @@ public class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Car car = (Car) o;
-
-        if (vin != null ? !vin.equals(car.vin) : car.vin != null) return false;
-        if (make != null ? !make.equals(car.make) : car.make != null) return false;
-        if (model != null ? !model.equals(car.model) : car.model != null) return false;
-        if (year != null ? !year.equals(car.year) : car.year != null) return false;
-        if (trim != null ? !trim.equals(car.trim) : car.trim != null) return false;
-        return logo != null ? logo.equals(car.logo) : car.logo == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = vin != null ? vin.hashCode() : 0;
-        result = 31 * result + (make != null ? make.hashCode() : 0);
-        result = 31 * result + (model != null ? model.hashCode() : 0);
-        result = 31 * result + (year != null ? year.hashCode() : 0);
-        result = 31 * result + (trim != null ? trim.hashCode() : 0);
-        result = 31 * result + (logo != null ? logo.hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Car{" +
-                "vin='" + vin + '\'' +
+                "vin=" + vin +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", year=" + year +
